@@ -86,12 +86,12 @@ WHERE CoordinateDistance(59.9322357, 30.2511635, Latitude, Longitude) <= 350
 # Topic 5
 ## REDIS
 1. Ключу user_list соответствует список, составленный из посетителей сайта. Напишите запрос, который определит количество посетителей сайта.
-	```redis
+	```sql
 	LLEN user_list
 	```
 
 2. Ключам friends:Elena и friends:Boris соответствуют множества, содержащие сведения о друзьях Елены и Бориса. Напишите запрос, который сформирует (и выведет) множество всех друзей Елены и Бориса.
-	```redis
+	```sql
 	SUNION friends:Elena friends:Boris
 	```
 3. Ключу user_r_set было сопоставлено ранжированное множество с помощью следующей команды: ZADD user_r_set 12 Tom 5 Viktor 9 Sergey 8 Ivan 1 Alex 14 Serafima 13 Dan
@@ -103,32 +103,32 @@ WHERE CoordinateDistance(59.9322357, 30.2511635, Latitude, Longitude) <= 350
 ## MONGO db
 
 1. Сколько в коллекции student документов, у которых значение поля age больше 20?
-	```mongodb
+	```sql
 	db.student.find({age: {$gt: 20}}).count() 
 	```
 2. Укажите имена студентов (из коллекции student), у которых возраст (поле age) равен 24.
-	```mongodb
+	```sql
 	db.student.find({age: {$eq: 24}}) 
 	```
 3. Сколько станций на линии "Piccadilly" в метро Лондона (коллекция UNDERGROUND).
-	```mongodb
+	```sql
 	db.UNDERGROUND.find({Line: /Piccadilly/i}).count()
 	```
 
 ## Cassandra 
 
 1. Как называется мультфильм, для которого идентификатор (поле cartoon_id) равен 6.
-	```cassandra
+	```sql
 	USE CARTOON;                                                                                                            
 	SELECT CARTOON_NAME FROM CARTOON_BY_ID WHERE CARTOON_ID = 6; 
 	```
 2. Сколько просмотров мультфильмов соответствует режиссеру, для которого идентификатор (поле director_id) равен 4.
-	```cassandra
+	```sql
 	USE DIRECTOR;
 	SELECT SUM(VIEWS) FROM CARTOON_BY_DIRECTOR_ID WHERE DIRECTOR_ID = 4;
 	```
 3. Сколько в базе мульфильмов, для которых выполнено условие country = 'France/UK'?
-	```cassandra
+	```sql
 	USE CARTOON;
 	SELECT COUNT(*) FROM CARTOON_BY_COUNTRY WHERE COUNTRY = 'France/UK';
 	```
@@ -136,10 +136,10 @@ WHERE CoordinateDistance(59.9322357, 30.2511635, Latitude, Longitude) <= 350
 ## Neo4j
 
 1. Сколько студентов записались (отношение :learn) на изучение курса Discrete Mathematics?
-	```neo4j
+	```sql
 	MATCH (c:course{name: 'Discrete Mathematics'}) <- [:learn]-(learn) RETURN learn.name
 	```
 2. Выведите список студентов, записавшихся на курс Databases.
-	```neo4j
+	```sql
 	MATCH (c:course{name: 'Databases'}) <- [:learn]-(learn) RETURN learn.name
 	```
